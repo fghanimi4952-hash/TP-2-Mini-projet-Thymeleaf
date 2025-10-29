@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Affectations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <div th:replace="fragments/navbar :: navbar"></div>
+
+    <div class="container page-section mt-4">
+        <!-- Messages -->
+        <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <span th:text="${success}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <span th:text="${error}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <h1><i class="fas fa-link"></i> Gestion des affectations</h1>
+        
+        <!-- Formulaire d'affectation -->
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-plus-circle"></i> Affecter du matériel</h5>
+                <form th:action="@{/affectations/affecter}" method="post">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>Matériel disponible :</label>
+                            <select name="materielId" class="form-select" required>
+                                <option value="">Choisir un matériel</option>
+                                <option th:each="materiel : ${materiels}" 
+                                        th:value="${materiel.id}" 
+                                        th:text="${materiel.ref + ' - ' + materiel.type + ' (' + materiel.marque + ')'}">
+                                </option>
+                            </select>
+                            <div class="form-text" th:if="${materiels != null and materiels.empty}">Aucun matériel disponible</div>
+                        </div>
+                        <div class="col-md-5">
+                            <label>Employé disponible :</label>
+                            <select name="employeId" class="form-select" required>
+                                <option value="">Choisir un employé</option>
+                                <option th:each="employe : ${employes}" 
+                                        th:value="${employe.id}" 
+                                        th:text="${employe.nom + ' - ' + employe.service}">
+                                </option>
+                            </select>
+                            <div class="form-text" th:if="${employes != null and employes.empty}">Aucun employé disponible</div>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary mt-4">
+                                <i class="fas fa-link"></i> Affecter
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Filtres -->
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-filter"></i> Filtrer les affectations</h5>
+                <form th:action="@{/affectations/filtrer}" method="get">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Service :</label>
+                            <select name="service" class="form-select">
+                                <option value="">Tous les services</option>
+                                <option value="Direction">Direction</option>
+                                <option value="Informatique">Informatique</option>
+                                <option value="Comptabilité">Comptabilité</option>
+                                <option value="Commercial">Commercial</option>
+                                <option value="Ressources Humaines">Ressources Humaines</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Support Technique">Support Technique</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Statut :</label>
+                            <select name="statut" class="form-select">
+                                <option value="">Tous les statuts</option>
+                                <option value="Active">Active</option>
+                                <option value="Retournée">Retournée</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary mt-4">
+                                <i class="fas fa-search"></i> Filtrer
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <a href="/" class="btn btn-secondary mt-3">
+            <i class="fas fa-home"></i> Accueil
+        </a>
+
+        <!-- Statistiques -->
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i> 
+                    <strong th:text="${affectationsActives != null ? affectationsActives.size() : 0}"></strong> affectation(s) active(s)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="alert alert-info">
+                    <i class="fas fa-history"></i> 
+                    <span th:text="${affectations != null ? (affectations.size() - (affectationsActives != null ? affectationsActives.size() : 0)) : 0}"></span> affectation(s) terminée(s)
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tableau des affectations -->
+        <table class="table table-striped mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th>Matériel</th>
+                    <th>Employé</th>
+                    <th>Service</th>
+                    <th>Date début</th>
+                    <th>Date fin</th>
+                    <th>Statut</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="affectation : ${affectations}">
+                    <td th:text="${affectation.materiel.ref + ' - ' + affectation.materiel.type}"></td>
+                    <td th:text="${affectation.employe.nom}"></td>
+                    <td>
+                        <span th:if="${affectation.employe.service == 'Direction'}" class="badge bg-danger" th:text="${affectation.employe.service}"></span>
+                        <span th:if="${affectation.employe.service == 'Informatique'}" class="badge bg-primary" th:text="${affectation.employe.service}"></span>
+                        <span th:if="${affectation.employe.service == 'Comptabilité'}" class="badge bg-success" th:text="${affectation.employe.service}"></span>
+                        <span th:if="${affectation.employe.service == 'Commercial'}" class="badge bg-warning" th:text="${affectation.employe.service}"></span>
+                        <span th:if="${affectation.employe.service == 'Ressources Humaines'}" class="badge bg-info" th:text="${affectation.employe.service}"></span>
+                        <span th:if="${affectation.employe.service == 'Marketing'}" class="badge bg-secondary" th:text="${affectation.employe.service}"></span>
+                        <span th:if="${affectation.employe.service == 'Support Technique'}" class="badge bg-dark" th:text="${affectation.employe.service}"></span>
+                    </td>
+                    <td th:text="${affectation.dateDebut}"></td>
+                    <td th:text="${affectation.dateFin} ?: 'En cours'"></td>
+                    <td>
+                        <span th:if="${affectation.statut == 'Active'}" class="badge bg-success" th:text="${affectation.statut}"></span>
+                        <span th:if="${affectation.statut == 'Retournée'}" class="badge bg-secondary" th:text="${affectation.statut}"></span>
+                    </td>
+                    <td>
+                        <a th:if="${affectation.statut == 'Active'}" 
+                           th:href="@{/affectations/retourner/{materielId}(materielId=${affectation.materiel.id})}" 
+                           class="btn btn-warning btn-sm"
+                           onclick="return confirm('Retourner ce matériel ?')">
+                            <i class="fas fa-undo"></i> Retourner
+                        </a>
+                        <span th:if="${affectation.statut == 'Retournée'}" class="text-muted">Terminée</span>
+                    </td>
+                </tr>
+                <tr th:if="${affectations == null or affectations.empty}">
+                    <td colspan="7" class="text-center text-muted">
+                        <i class="fas fa-info-circle"></i> Aucune affectation trouvée
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

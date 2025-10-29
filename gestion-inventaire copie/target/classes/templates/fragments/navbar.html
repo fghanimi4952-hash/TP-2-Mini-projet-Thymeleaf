@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark app-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-laptop-code"></i> Gestion Inventaire
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMain" aria-controls="navbarsMain" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsMain">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" th:classappend="${#httpServletRequest.requestURI.startsWith('/materiel')} ? ' active'" href="/materiel">
+                            <i class="fas fa-laptop"></i> Matériel
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:classappend="${#httpServletRequest.requestURI.startsWith('/employes')} ? ' active'" href="/employes">
+                            <i class="fas fa-users"></i> Employés
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:classappend="${#httpServletRequest.requestURI.startsWith('/affectations')} ? ' active'" href="/affectations">
+                            <i class="fas fa-link"></i> Affectations
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Fragment export -->
+    <div th:fragment="navbar"></div>
+</body>
+</html>
+
+
