@@ -1,0 +1,10 @@
+com/entreprise/inventaire/InventaireApplication.class
+com/entreprise/inventaire/repository/MaterielRepository.class
+com/entreprise/inventaire/entity/Affectation.class
+com/entreprise/inventaire/repository/AffectationRepository.class
+com/entreprise/inventaire/entity/AffectationKey.class
+com/entreprise/inventaire/repository/EmployeRepository.class
+com/entreprise/inventaire/entity/Employe.class
+com/entreprise/inventaire/controller/InventaireController.class
+com/entreprise/inventaire/service/InventaireService.class
+com/entreprise/inventaire/entity/Materiel.class
