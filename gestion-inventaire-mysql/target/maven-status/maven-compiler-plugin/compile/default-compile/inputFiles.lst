@@ -1,0 +1,10 @@
+/Users/mac/Desktop/gestion-inventaire-mysql/src/main/java/com/entreprise/inventaire/repository/AffectationRepository.java
+/Users/mac/Desktop/gestion-inventaire-mysql/src/main/java/com/entreprise/inventaire/repository/EmployeRepository.java
+/Users/mac/Desktop/gestion-inventaire-mysql/src/main/java/com/entreprise/inventaire/repository/MaterielRepository.java
+/Users/mac/Desktop/gestion-inventaire-mysql/src/main/java/com/entreprise/inventaire/service/InventaireService.java
+/Users/mac/Desktop/gestion-inventaire-mysql/src/main/java/com/entreprise/inventaire/entity/Affectation.java
+/Users/mac/Desktop/gestion-inventaire-mysql/src/main/java/com/entreprise/inventaire/entity/Materiel.java
+/Users/mac/Desktop/gestion-inventaire-mysql/src/main/java/com/entreprise/inventaire/entity/Employe.java
+/Users/mac/Desktop/gestion-inventaire-mysql/src/main/java/com/entreprise/inventaire/entity/AffectationKey.java
+/Users/mac/Desktop/gestion-inventaire-mysql/src/main/java/com/entreprise/inventaire/InventaireApplication.java
+/Users/mac/Desktop/gestion-inventaire-mysql/src/main/java/com/entreprise/inventaire/controller/InventaireController.java
