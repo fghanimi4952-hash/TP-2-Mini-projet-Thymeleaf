@@ -86,6 +86,7 @@ src/main/resources/
 ```
 
 ### 2.3 Diagramme d'architecture
+<img width="1024" height="1536" alt="ChatGPT Image 3 nov  2025, 01_17_09" src="https://github.com/user-attachments/assets/373395c3-ca94-4b32-97f5-5d576a536338" />
 
 ```
 ┌─────────────┐
@@ -139,6 +140,8 @@ src/main/resources/
 │ (Réponse)   │
 └─────────────┘
 ```
+
+
 
 **Flux de traitement :**
 1. Le navigateur envoie une requête HTTP au contrôleur Spring MVC
@@ -222,7 +225,7 @@ Le tableau de bord affiche des **statistiques dynamiques** qui se mettent à jou
 
 ---
 
-## 💾 4. Modèle de données
+##  4. Modèle de données
 
 ### 4.1 Entités
 
@@ -305,7 +308,7 @@ jdbc:mysql://localhost:3306/gestion_inventaire?useSSL=false&serverTimezone=UTC&c
 ```properties
 spring.jpa.hibernate.ddl-auto=create-drop
 ```
-⚠️ **Note :** Pour la production, utiliser `update` pour préserver les données :
+ **Note :** Pour la production, utiliser `update` pour préserver les données :
 ```properties
 spring.jpa.hibernate.ddl-auto=update
 ```
@@ -466,7 +469,7 @@ L'application inclut un système de chargement automatique de données de test v
 ##  7. Démonstration (Vidéo)
 
 ### Lien vers la vidéo de démonstration
-> **[URL de la vidéo à ajouter]**
+> **https://drive.google.com/file/d/14Ikd4GmWNEiQHegpsj4imMeZjndSBAJw/view?usp=sharing**
 
 ### Contenu de la vidéo
 
