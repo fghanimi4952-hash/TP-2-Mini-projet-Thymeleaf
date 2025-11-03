@@ -456,7 +456,8 @@ La vidéo de démonstration montre :
 
 ### Encadrement
 > **Encadrant : Dr. Mohamed LACHGAR** 
-> **Cours : Développement JakartaEE : Spring** 
+>
+>  **Cours : Développement JakartaEE : Spring** 
 > **Établissement : ENS MARRAKECH** 
 
 ### Année académique
