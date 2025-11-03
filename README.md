@@ -86,62 +86,8 @@ src/main/resources/
 ```
 
 ### 2.3 Diagramme d'architecture
-<img width="1024" height="1536" alt="ChatGPT Image 3 nov  2025, 01_17_09" src="https://github.com/user-attachments/assets/373395c3-ca94-4b32-97f5-5d576a536338" />
 
-```
-┌─────────────┐
-│  Navigateur │
-│   (Client)  │
-└──────┬──────┘
-       │ HTTP Request
-       ▼
-┌─────────────────────────────────────┐
-│   InventaireController              │
-│   (Spring MVC Controller)           │
-│   - Routes HTTP                     │
-│   - Gestion des requêtes            │
-└──────┬──────────────────────────────┘
-       │
-       ▼
-┌─────────────────────────────────────┐
-│   InventaireService                 │
-│   (Couche métier)                   │
-│   - Logique business                │
-│   - Validation                      │
-│   - Calculs statistiques            │
-└──────┬──────────────────────────────┘
-       │
-       ▼
-┌─────────────────────────────────────┐
-│   Repository Layer                  │
-│   (Spring Data JPA)                 │
-│   - EmployeRepository               │
-│   - MaterielRepository              │
-│   - AffectationRepository           │
-└──────┬──────────────────────────────┘
-       │
-       ▼
-┌─────────────────────────────────────┐
-│   MySQL Database                    │
-│   - Tables : employe, materiel,     │
-│     affectation                     │
-└─────────────────────────────────────┘
-       │
-       ▼
-┌─────────────────────────────────────┐
-│   Thymeleaf Templates               │
-│   - Génération HTML                 │
-│   - Injection de données            │
-└──────┬──────────────────────────────┘
-       │
-       ▼
-┌─────────────┐
-│  Navigateur │
-│ (Réponse)   │
-└─────────────┘
-```
-
-
+<img width="1024" height="1536" alt="im1" src="https://github.com/user-attachments/assets/eefeb484-43ff-42cc-9667-5ca550a34470" />
 
 **Flux de traitement :**
 1. Le navigateur envoie une requête HTTP au contrôleur Spring MVC
